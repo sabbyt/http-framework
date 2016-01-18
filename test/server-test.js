@@ -2,8 +2,7 @@ var httpframe = require(__dirname + '/../index');
 
 httpframe.post('/', (req, res) => {
   httpframe.data(req, (data) => {
-    res.write(data);
-    res.end();
+    res.gift(data);
   });
 });
 
