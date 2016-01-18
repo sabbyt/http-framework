@@ -1,12 +1,16 @@
 var httpframe = require(__dirname + '/../index');
 
-httpframe.post('/', function(req, res) {
-  httpframe.data(req, function(data) {
+httpframe.post('/', (req, res) => {
+  httpframe.data(req, (data) => {
     res.write(data);
     res.end();
   });
-
 });
-httpframe.listen(3000, function() {
+
+httpframe.get('/filePath', (req, res) => {
+  httpframe.view(__dirname + '/../public/index.html', res);
+});
+
+httpframe.listen(3000, () => {
   console.log('server up');
 });
