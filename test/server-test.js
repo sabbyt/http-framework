@@ -11,5 +11,5 @@ httpframe.get('/filePath', (req, res) => {
 });
 
 httpframe.listen(3000, () => {
-  console.log('server up');
+  console.log('Server started!');
 });
