@@ -1,8 +1,11 @@
 var httpframe = require(__dirname + '/../index');
 
-httpframe.get('/', function(req, res) {
-  res.write('hello');
-  res.end();
+httpframe.post('/', function(req, res) {
+  httpframe.data(req, function(data) {
+    res.write(data);
+    res.end();
+  });
+
 });
 httpframe.listen(3000, function() {
   console.log('server up');
