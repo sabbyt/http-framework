@@ -2,27 +2,27 @@ var httpframe = require(__dirname + '/../index');
 
 httpframe.get('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.gift(JSON.stringify({"msg":"get test"}));
+  res.gift(JSON.stringify({'msg': 'get test'}));
 });
 
 httpframe.post('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.gift(JSON.stringify({"msg":"post test"}));
+  res.gift(JSON.stringify({'msg': 'post test'}));
 });
 
 httpframe.patch('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.gift(JSON.stringify({"msg":"patch test"}));
+  res.gift(JSON.stringify({'msg': 'patch test'}));
 });
 
 httpframe.put('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.gift(JSON.stringify({"msg":"put test"}));
+  res.gift(JSON.stringify({'msg': 'put test'}));
 });
 
 httpframe.delete('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.gift(JSON.stringify({"msg":"delete test"}));
+  res.gift(JSON.stringify({'msg': 'delete test'}));
 });
 
 httpframe.post('/', (req, res) => {
@@ -37,7 +37,7 @@ httpframe.get('/filePath', (req, res) => {
 });
 
 httpframe.listen(3000, () => {
-  console.log('server up');
+  console.log('Server up');
 });
 
 module.exports = httpframe.server;

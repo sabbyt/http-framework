@@ -17,7 +17,8 @@ gulp.task('eslint', () => {
         'curly': 0,
         'quote-props': 0,
         'arrow-parens': 0,
-        'no-unused-vars': 0
+        'no-unused-vars': 0,
+        'max-len': 0
       },
       'env': {
         'es6': true,
@@ -30,7 +31,7 @@ gulp.task('eslint', () => {
 });
 
 gulp.task('test', () => {
-  return gulp.src(['test/*.js'], {
+  return gulp.src(['test/*test.js'], {
     read: false
   })
     .pipe(mocha());

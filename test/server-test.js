@@ -2,13 +2,14 @@ var server = require(__dirname + '/temp-server');
 var contentHead = require(__dirname + '/../lib/fileTypes');
 var chai = require('chai');
 var chaiHTTP = require('chai-http');
+
 chai.use(chaiHTTP);
 var expect = chai.expect;
 var request = chai.request;
 var origin = 'localhost:3000';
 
-describe('REST functionality', function() {
-  it('should get', (done) => {
+describe('the REST functionality of the server', function() {
+  it('should GET', (done) => {
     request(origin)
       .get('/rest')
       .end((err, res) => {
@@ -18,7 +19,7 @@ describe('REST functionality', function() {
       });
   });
 
-  it('should post', (done) => {
+  it('should POST', (done) => {
     request(origin)
       .post('/rest')
       .end((err, res) => {
@@ -28,7 +29,7 @@ describe('REST functionality', function() {
       });
   });
 
-  it('should put', (done) => {
+  it('should PUT', (done) => {
     request(origin)
       .put('/rest')
       .end((err, res) => {
@@ -38,7 +39,7 @@ describe('REST functionality', function() {
       });
   });
 
-  it('should patch', (done) => {
+  it('should PATCH', (done) => {
     request(origin)
       .patch('/rest')
       .end((err, res) => {
@@ -48,7 +49,7 @@ describe('REST functionality', function() {
       });
   });
 
-  it('should delete', (done) => {
+  it('should DELETE', (done) => {
     request(origin)
       .delete('/rest')
       .end((err, res) => {
@@ -57,20 +58,35 @@ describe('REST functionality', function() {
         done();
       });
   });
+
+  it('should respond a 404 error to GET requests at unknown routes', (done) => {
+    request(origin)
+      .get('/doesnotexist')
+      .end((err, res) => {
+        expect(err).to.eql(null);
+        expect(res).to.have.status(404);
+        expect(res.body.msg).to.eql('Page not found');
+        done();
+      });
+  });
 });
 
 describe('our baby-express test', () => {
-  it('should get and read external files', (done) => {
+  after(() => {
+    server.close();
+  });
+
+  it('should GET and read external files with the exportObj.view function', (done) => {
     request(origin)
       .get('/filePath')
       .end((err, res) => {
         expect(err).to.eql(null);
-        expect(res.text).to.eql('hello world\r\n');
+        expect(res.text).to.eql('hello world\n');
         done();
       });
   });
 
-  it('should post request data', (done) => {
+  it('should POST request data with the exportObj.data function', (done) => {
     request(origin)
       .post('/')
       .send('yolo')
@@ -84,7 +100,7 @@ describe('our baby-express test', () => {
 
 describe('reading file types', () => {
   it('should match the specified extension name', () => {
-    expect(contentHead('/index.html')).to.eql({"Content-Type": "text/html"});
-    expect(contentHead('/index.json')).to.eql({"Content-Type": "application/json"});
+    expect(contentHead('/index.html')).to.eql({'Content-Type': 'text/html'});
+    expect(contentHead('/index.json')).to.eql({'Content-Type': 'application/json'});
   });
 });
