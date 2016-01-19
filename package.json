@@ -1,0 +1,29 @@
+{
+  "name": "http-framework",
+  "version": "1.0.0",
+  "description": "Creating a HTTP Framework",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabbyt/http-framework"
+  },
+  "author": "Kenneth Suh and Sabrina Tee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabbyt/http-framework/issues"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4"
+  }
+}
