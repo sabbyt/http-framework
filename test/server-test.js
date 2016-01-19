@@ -59,7 +59,7 @@ describe('REST functionality', function() {
   });
 });
 
-describe('our http-framework test', () => {
+describe('our baby-express test', () => {
   it('should get and read external files', (done) => {
     request(origin)
       .get('/filePath')

@@ -1,5 +1,5 @@
 {
-  "name": "http-framework",
+  "name": "baby-express",
   "version": "1.0.0",
   "description": "Creating a HTTP Framework",
   "main": "index.js",
