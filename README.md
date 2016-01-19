@@ -10,12 +10,12 @@ npm install baby-express
 ```
 And require babyExpress into the top of your working file:
 ```
-const babyExpress = require(__dirname + '/../index');
+const babyExpress = require('baby-express');
 ```
 Make sure to include a listen call at the bottom of your file to create and listen to the server at your specified port:
 ```
 babyExpress.listen(3000, () => {
-  console.log('server up');
+  console.log('Server up');
 });
 ```
 Then create REST calls following the sample code below:
@@ -23,7 +23,7 @@ Then create REST calls following the sample code below:
 ## A Sample babyExpress File
 This file will give you a taste of what baby-express does:
 ```
-var babyExpress = require(__dirname + '/../index');
+var babyExpress = require('baby-express');
 
 babyExpress.get('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
@@ -59,7 +59,7 @@ babyExpress.listen(3000, () => {
 ### res.gift()
 babyExpress combines the ```res.write()``` and ```res.end()``` http methods into one package defined as:
 ```
-res.gift()
+res.gift('hello world');
 ```
 
 ### Data handler
@@ -76,9 +76,16 @@ babyExpress.post('/', (req, res) => {
 ### View handler
 There is a view handler feature that writes the data from the file to the response object:
 ```
+// example 1:
 babyExpress.get('[uri]', (req, res) => {
   babyExpress.view('[pathname]', res);
 });
+
+// example 2:
+babyExpress.get('/filePath', (req, res) => {
+  babyExpress.view(__dirname + '/../public/test.txt', res);
+});
+
 ```
 
 ### Content-Type Header
