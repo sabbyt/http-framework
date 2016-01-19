@@ -93,12 +93,16 @@ This feature is already built into ```baby-express.js``` but if you would like t
 ```javascript
 const babyExpress = require('baby-express');
 const contentHead = babyExpress.contentHead;
+const fs = require('fs');
 
-fs.readFile(pathname, (err, data) => {
-  if (err) throw err;
-  console.log('Read file: ' + pathname);
-  res.writeHead(200, contentHead(pathname));
-  res.gift(data);
+babyExpress.get('/getFileURI', (req, res) => {
+  var pathname = '/path/to/file.txt';
+  fs.readFile(pathname, (err, data) => {
+    if (err) throw err;
+    console.log('Read file: ' + pathname);
+    res.writeHead(200, contentHead(pathname));
+    res.gift(data);
+  });
 });
 ```
 
