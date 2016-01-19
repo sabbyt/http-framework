@@ -1,26 +1,99 @@
-# http-framework
+# babyExpress
 A Simple HTTP Framework
 
 Code Fellows 401 JS assignment by [Kenneth Suh](https://github.com/suhk) and [Sabrina Tee](https://github.com/sabbyt)
 
 ## Quick Start
-
+Install babyExpress from npm:
 ```
-var httpframe = require(__dirname + '/../index');
+npm install baby-express
+```
+And require babyExpress into the top of your working file:
+```
+const babyExpress = require(__dirname + '/../index');
+```
+Make sure to include a listen call at the bottom of your file to create and listen to the server at your specified port:
+```
+babyExpress.listen(3000, () => {
+  console.log('server up');
+});
+```
+Then create REST calls following the sample code below:
 
+## A Sample babyExpress File
+This file will give you a taste of what baby-express does:
+```
+var babyExpress = require(__dirname + '/../index');
+
+babyExpress.get('/rest', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.gift(JSON.stringify({"msg":"get test"}));
+});
+
+babyExpress.post('/rest', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.gift(JSON.stringify({"msg":"post test"}));
+});
+
+babyExpress.patch('/rest', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.gift(JSON.stringify({"msg":"patch test"}));
+});
+
+babyExpress.put('/rest', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.gift(JSON.stringify({"msg":"put test"}));
+});
+
+babyExpress.delete('/rest', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.gift(JSON.stringify({"msg":"delete test"}));
+});
+
+babyExpress.listen(3000, () => {
+  console.log('server up');
+});
 ```
 
-- getting started:
-1. require(index) file
+## Features
+### res.gift()
+babyExpress combines the ```res.write()``` and ```res.end()``` http methods into one package defined as:
+```
+res.gift()
+```
 
-- content type head
+### Data handler
+There is a data handler feature that collects all the data chunks and passes the completed string into a callback function:
+```
+babyExpress.post('/', (req, res) => {
+  babyExpress.data(req, (data) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.gift(data);
+  });
+});
+```
 
-- get, post, put, patch, delete REST COMMANDS
+### View handler
+There is a view handler feature that writes the data from the file to the response object:
+```
+babyExpress.get('[uri]', (req, res) => {
+  babyExpress.view('[pathname]', res);
+});
+```
 
-- view handler that reads files/paths res.view
+### Content-Type Header
+This feature is already built into baby-express.js but if you would like to use the Content-Type Header function that automatically detects the file's extension and inserts the completed Content-Type into the header, require this module at the top of your file:
+```
+const babyExpress = require('baby-express');
+const contentHead = babyExpress.contentHead;
 
-- data function - when read a file, gets full data res.data
+fs.readFile(pathname, (err, data) => {
+  if (err) throw err;
+  console.log('Read file: ' + pathname);
+  res.writeHead(200, contentHead(pathname));
+  res.gift(data);
+});
+```
 
-- res.gift() - which combines res.write res.end
-
-- exportObj.listen() - starts and listens to server from specified port
+### Issues? Suggestions? Comments?
+Contact tyler@code-fellows.org
