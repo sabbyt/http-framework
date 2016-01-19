@@ -2,12 +2,13 @@ var server = require(__dirname + '/temp-server');
 var contentHead = require(__dirname + '/../lib/fileTypes');
 var chai = require('chai');
 var chaiHTTP = require('chai-http');
+
 chai.use(chaiHTTP);
 var expect = chai.expect;
 var request = chai.request;
 var origin = 'localhost:3000';
 
-describe('REST functionality', function() {
+describe('the REST functionality', function() {
   it('should get', (done) => {
     request(origin)
       .get('/rest')
@@ -69,7 +70,7 @@ describe('our baby-express test', () => {
       .get('/filePath')
       .end((err, res) => {
         expect(err).to.eql(null);
-        expect(res.text).to.eql('hello world\r\n');
+        expect(res.text).to.eql('hello world\n');
         done();
       });
   });

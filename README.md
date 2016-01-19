@@ -9,11 +9,11 @@ Install babyExpress from npm:
 npm install baby-express
 ```
 And require babyExpress into the top of your working file:
-```
+```javascript
 const babyExpress = require('baby-express');
 ```
 Make sure to include a listen call at the bottom of your file to create and listen to the server at your specified port:
-```
+```javascript
 babyExpress.listen(3000, () => {
   console.log('Server up');
 });
@@ -21,8 +21,8 @@ babyExpress.listen(3000, () => {
 Then create REST calls following the sample code below:
 
 ## A Sample babyExpress File
-This file will give you a taste of what baby-express does:
-```
+This file will give you a taste of what babyExpress does:
+```javascript
 var babyExpress = require('baby-express');
 
 babyExpress.get('/rest', (req, res) => {
@@ -58,13 +58,13 @@ babyExpress.listen(3000, () => {
 ## Features
 ### res.gift()
 babyExpress combines the ```res.write()``` and ```res.end()``` http methods into one package defined as:
-```
+```javascript
 res.gift('hello world');
 ```
 
 ### Data Handler
 There is a data handler feature that collects all the data chunks and passes the completed string into a callback function:
-```
+```javascript
 babyExpress.post('/', (req, res) => {
   babyExpress.data(req, (data) => {
     res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -75,13 +75,13 @@ babyExpress.post('/', (req, res) => {
 
 ### View Handler
 There is a view handler feature that writes the data from the file to the response object:
-```
-// example 1:
+```javascript
+// Example 1:
 babyExpress.get('[uri]', (req, res) => {
   babyExpress.view('[pathname]', res);
 });
 
-// example 2:
+// Example 2:
 babyExpress.get('/filePath', (req, res) => {
   babyExpress.view(__dirname + '/../public/test.txt', res);
 });
@@ -90,7 +90,7 @@ babyExpress.get('/filePath', (req, res) => {
 
 ### Content-Type Header
 This feature is already built into baby-express.js but if you would like to use the Content-Type Header function that automatically detects the file's extension and inserts the completed Content-Type into the header, require this module at the top of your file:
-```
+```javascript
 const babyExpress = require('baby-express');
 const contentHead = babyExpress.contentHead;
 
