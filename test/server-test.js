@@ -8,8 +8,8 @@ var expect = chai.expect;
 var request = chai.request;
 var origin = 'localhost:3000';
 
-describe('the REST functionality', function() {
-  it('should get', (done) => {
+describe('the REST functionality of the server', function() {
+  it('should GET', (done) => {
     request(origin)
       .get('/rest')
       .end((err, res) => {
@@ -19,7 +19,7 @@ describe('the REST functionality', function() {
       });
   });
 
-  it('should post', (done) => {
+  it('should POST', (done) => {
     request(origin)
       .post('/rest')
       .end((err, res) => {
@@ -29,7 +29,7 @@ describe('the REST functionality', function() {
       });
   });
 
-  it('should put', (done) => {
+  it('should PUT', (done) => {
     request(origin)
       .put('/rest')
       .end((err, res) => {
@@ -39,7 +39,7 @@ describe('the REST functionality', function() {
       });
   });
 
-  it('should patch', (done) => {
+  it('should PATCH', (done) => {
     request(origin)
       .patch('/rest')
       .end((err, res) => {
@@ -49,12 +49,23 @@ describe('the REST functionality', function() {
       });
   });
 
-  it('should delete', (done) => {
+  it('should DELETE', (done) => {
     request(origin)
       .delete('/rest')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res.body.msg).to.eql('delete test');
+        done();
+      });
+  });
+
+  it('should respond a 404 error to GET requests at unknown routes', (done) => {
+    request(origin)
+      .get('/doesnotexist')
+      .end((err, res) => {
+        expect(err).to.eql(null);
+        expect(res).to.have.status(404);
+        expect(res.body.msg).to.eql('Page not found');
         done();
       });
   });
@@ -65,7 +76,7 @@ describe('our baby-express test', () => {
     server.close();
   });
 
-  it('should get and read external files', (done) => {
+  it('should GET and read external files with the exportObj.view function', (done) => {
     request(origin)
       .get('/filePath')
       .end((err, res) => {
@@ -75,7 +86,7 @@ describe('our baby-express test', () => {
       });
   });
 
-  it('should post request data', (done) => {
+  it('should POST request data with the exportObj.data function', (done) => {
     request(origin)
       .post('/')
       .send('yolo')
