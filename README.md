@@ -62,7 +62,7 @@ babyExpress combines the ```res.write()``` and ```res.end()``` http methods into
 res.gift('hello world');
 ```
 
-### Data handler
+### Data Handler
 There is a data handler feature that collects all the data chunks and passes the completed string into a callback function:
 ```
 babyExpress.post('/', (req, res) => {
@@ -73,7 +73,7 @@ babyExpress.post('/', (req, res) => {
 });
 ```
 
-### View handler
+### View Handler
 There is a view handler feature that writes the data from the file to the response object:
 ```
 // example 1:
