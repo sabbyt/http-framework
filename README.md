@@ -1,5 +1,5 @@
 # babyExpress
-A Simple HTTP Framework
+A simple framework built on the node HTTP module that aims to simplify the creation and use of REST APIs.
 
 Code Fellows 401 JS assignment by [Kenneth Suh](https://github.com/suhk) and [Sabrina Tee](https://github.com/sabbyt)
 
@@ -8,7 +8,7 @@ Install babyExpress from [npm](https://www.npmjs.com/package/baby-express):
 ```
 npm install baby-express
 ```
-And require the babyExpress plugin into the top of your working file:
+And require the babyExpress module into the top of your working file:
 ```javascript
 const babyExpress = require('baby-express');
 ```
