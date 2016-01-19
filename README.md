@@ -23,7 +23,7 @@ Then create REST calls following the sample code below:
 ## A Sample babyExpress File
 This file will give you a taste of what babyExpress does:
 ```javascript
-var babyExpress = require('baby-express');
+const babyExpress = require('baby-express');
 
 babyExpress.get('/rest', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
@@ -89,22 +89,25 @@ babyExpress.get('/filePath', (req, res) => {
 ```
 
 ### Content-Type Header
-This feature is already built into ```baby-express.js``` but if you would like to use the Content-Type Header function that automatically detects the file's extension and inserts the completed Content-Type into the header, require this module at the top of your file:
+This feature is already built into ```baby-express.js``` but if you would like to use the Content-Type Header function that automatically detects the file's extension and inserts the completed Content-Type into the header, require the babyExpress module at the top of your file:
 ```javascript
-const babyExpress = require('baby-express');
-const contentHead = babyExpress.contentHead;
-const fs = require('fs');
-
-babyExpress.get('/getFileURI', (req, res) => {
-  var pathname = '/path/to/file.txt';
-  fs.readFile(pathname, (err, data) => {
-    if (err) throw err;
-    console.log('Read file: ' + pathname);
-    res.writeHead(200, contentHead(pathname));
-    res.gift(data);
-  });
-});
+res.writeHead(200, babyExpress.contentHead(pathname));
 ```
+Acceptable MIME Types:
+
+| MIME TYPE | Content-Type |
+|-----------|--------------|
+| txt       | 'text/plain' |
+| html      | 'text/html'  |
+| dvi       | 'text/x-dvi' |
+| xc        | 'text/x-c'   |
+| css       | 'text/css'   |
+| jpeg      | 'image/jpeg' |
+| png       | 'image/png'  |
+| bmp       | 'image/bmp'  |
+| json      | 'application/json' |
+| pdf       | 'application/pdf'  |
+
 
 ### Issues? Suggestions? Comments?
 Submit an issue on [Github](https://github.com/sabbyt/http-framework/issues) or contact tyler@code-fellows.org
