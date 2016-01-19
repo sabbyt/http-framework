@@ -60,6 +60,10 @@ describe('REST functionality', function() {
 });
 
 describe('our baby-express test', () => {
+  after(() => {
+    server.close();
+  });
+
   it('should get and read external files', (done) => {
     request(origin)
       .get('/filePath')
@@ -84,7 +88,7 @@ describe('our baby-express test', () => {
 
 describe('reading file types', () => {
   it('should match the specified extension name', () => {
-    expect(contentHead('/index.html')).to.eql({"Content-Type": "text/html"});
-    expect(contentHead('/index.json')).to.eql({"Content-Type": "application/json"});
+    expect(contentHead('/index.html')).to.eql({'Content-Type': 'text/html'});
+    expect(contentHead('/index.json')).to.eql({'Content-Type': 'application/json'});
   });
 });
