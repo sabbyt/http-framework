@@ -1,4 +1,5 @@
 var server = require(__dirname + '/temp-server');
+var contentHead = require(__dirname + '/../lib/fileTypes');
 var chai = require('chai');
 var chaiHTTP = require('chai-http');
 chai.use(chaiHTTP);
@@ -58,7 +59,7 @@ describe('REST functionality', function() {
   });
 });
 
-describe('our http-framework test', () => {
+describe('our baby-express test', () => {
   it('should get and read external files', (done) => {
     request(origin)
       .get('/filePath')
@@ -78,5 +79,12 @@ describe('our http-framework test', () => {
         expect(res.text).to.eql('yolo');
         done();
       });
+  });
+});
+
+describe('reading file types', () => {
+  it('should match the specified extension name', () => {
+    expect(contentHead('/index.html')).to.eql({"Content-Type": "text/html"});
+    expect(contentHead('/index.json')).to.eql({"Content-Type": "application/json"});
   });
 });
